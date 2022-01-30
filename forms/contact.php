@@ -1,36 +1,30 @@
 <?php
  
+  $con=mysqli_connect('localhost','root','','contactpage');
+ if(!$con)
+ {  ?>
+          <script>alert('No connection..');</script>
+ <?php }
 
-  // Replace contact@example.com with your real receiving email address
-  $receiving_email_address = 'contact@example.com';
-
-  if( file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php' )) {
-    include( $php_email_form );
-  } else {
-    die( 'Unable to load the "PHP Email Form" Library!');
-  }
-
-  $contact = new PHP_Email_Form;
-  $contact->ajax = true;
-  
-  $contact->to = $receiving_email_address;
-  $contact->from_name = $_POST['name'];
-  $contact->from_email = $_POST['email'];
-  $contact->subject = $_POST['subject'];
-
-  // Uncomment below code if you want to use SMTP to send emails. You need to enter your correct SMTP credentials
-  /*
-  $contact->smtp = array(
-    'host' => 'example.com',
-    'username' => 'example',
-    'password' => 'pass',
-    'port' => '587'
-  );
-  */
-
-  $contact->add_message( $_POST['name'], 'From');
-  $contact->add_message( $_POST['email'], 'Email');
-  $contact->add_message( $_POST['message'], 'Message', 10);
-
-  echo $contact->send();
+$massage='';
+ if(isset($_POST['submit']))
+ {
+   $name=$_POST['name'];
+   $email=$_POST['email'];
+   $subject=$_POST['subject'];
+   $message=$_POST['message'];
+      if($name!='' && $email!='' && $subject!='' && $message!='')
+      {
+          $q="INSERT INTO `contact_tbl`(`name`, `email`, `Subject`, `Message`) VALUES ('$name','$email','$subject','$message')";
+          $ans=mysqli_query($con,$q);
+          if($ans)
+          {
+              $massage='Your message has been sent. Thank you!';
+          }
+          else
+          {
+            $massage='Your message has Not been sent';
+          }
+      }
+ }
 ?>
