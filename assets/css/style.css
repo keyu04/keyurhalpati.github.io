@@ -128,6 +128,7 @@ h6 {
     #header {
         left: -300px;
     }
+
     #main {
         margin-left: 0;
     }
@@ -279,14 +280,36 @@ h6 {
 }
 
 @media (max-width: 768px) {
-    #hero h1 {
-        font-size: 28px;
-        line-height: 36px;
+    #hero {
+        height: 100vh;
+        background: url("../img/hero-bg.jpg") right center;
+        background-size: cover;
     }
-    #hero h2 {
-        font-size: 18px;
-        line-height: 24px;
-        margin-bottom: 30px;
+}
+
+@media (max-width: 350px) {
+    #hero h1 {
+        font-size: 30px;
+        line-height: 30px;
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+    }
+
+    #hero h1 span {
+        margin-left: 6px;
+    }
+
+    #skill_title {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+    }
+
+    #skill_title span {
+        /* font-size: 24px;
+        line-height: 20px; */
+        margin-left: 6px;
     }
 }
 
@@ -950,6 +973,7 @@ section {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
@@ -959,6 +983,7 @@ section {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
